@@ -1,6 +1,13 @@
 const MediaCard = ({ item, isBookmarked, onBookmark, isTrending = false }) => {
-  const { title, release_date, type, age_rating, image } = item
+  const { title, release_date, type, age_rating, image, trailer } = item
   const year = new Date(release_date).getFullYear()
+  
+  const openTrailer = (e) => {
+    e.stopPropagation()
+    if (trailer) {
+      window.open(trailer, '_blank')
+    }
+  }
   
   return (
     <div className={isTrending ? "media-card trending-card" : "media-card"}>
@@ -20,7 +27,18 @@ const MediaCard = ({ item, isBookmarked, onBookmark, isTrending = false }) => {
         </svg>
       </div>
       
-      <img src={image} alt={title} className="media-image" />
+      <div className="media-image-container">
+        <img src={image} alt={title} className="media-image" />
+        <div className="play-overlay" onClick={openTrailer}>
+          <div className="play-button">
+            <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 0C6.713 0 0 6.713 0 15c0 8.288 6.713 15 15 15 8.288 0 15-6.713 15-15 0-8.288-6.713-15-15-15Zm-3 21V8l9 6.5-9 6.5Z" 
+                fill="#FFF"/>
+            </svg>
+            <span>Play</span>
+          </div>
+        </div>
+      </div>
       
       <div className="media-info">
         <div className="media-meta">
