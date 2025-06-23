@@ -249,8 +249,9 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--text-gray);
+  color: var(--text-white);
   font-size: 13px;
+  opacity: 0.75;
 }
 
 .media-type {
